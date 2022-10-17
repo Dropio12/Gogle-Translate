@@ -4,9 +4,9 @@ import pytesseract
 from PIL import Image
 import os
 
+
 def image_to_text(image):
-    path_to_tesseract = r"C:\Users\Strea\AppData\Local\Tesseract-OCR\tesseract.exe"
-    pytesseract.tesseract_cmd = path_to_tesseract
+    pytesseract.pytesseract.tesseract_cmd = r'C:\Users\Strea\AppData\Local\Tesseract-OCR\tesseract.exe'
     # read the image
     img = cv2.imread(image)
     # convert to gray
@@ -19,15 +19,17 @@ def image_to_text(image):
     # load the image as a PIL/Pillow image, apply OCR, and then delete the temporary file
     text = pytesseract.image_to_string(Image.open(filename))
     os.remove(filename)
+    print(text)
     return text
+
 
 image_to_text('quotes.jpg')
 ## read image
-#img = cv2.imread('quotes.jpg')
+# img = cv2.imread('quotes.jpg')
 
 # pytessercat
-#pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files/Tesseract-OCR/tesseract.exe'
-#text = pytesseract.image_to_string
+# pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files/Tesseract-OCR/tesseract.exe'
+# text = pytesseract.image_to_string
 
 # print text
-#print(text)
+# print(text)
