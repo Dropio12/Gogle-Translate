@@ -21,12 +21,3 @@ def image_to_text(image):
     os.remove(filename)
     return text
 
-## read image
-# img = cv2.imread('quotes.jpg')
-
-# pytessercat
-# pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files/Tesseract-OCR/tesseract.exe'
-# text = pytesseract.image_to_string
-
-# print text
-# print(text)

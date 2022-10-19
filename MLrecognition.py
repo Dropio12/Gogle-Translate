@@ -5,30 +5,23 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.pipeline import Pipeline
 from sklearn.tree import DecisionTreeClassifier
 
+
 def prediction(TextExtracted):
-    # transfère du doc csv
-    df = pd.read_csv('language-identification-datasets.csv')
+    if TextExtracted =='':
+        print('No text detected. Try to take a better picture or with more light.')
+    else:
+        # transfère du doc csv
+        df = pd.read_csv('language-identification-datasets.csv')
 
-    # division en 2 array pour text et langue
-    x = df['Text']
-    y = df['Language']
-    # z = df['ID']
-    x_train = x[0:24326]
-    y_train = y[0:24326]
-    csv.writer('language-identification-datasets.csv', TextExtracted, 24300, 0);
-    y_test = y[24300]
-    # x_test = x[24300:31014]
-    # z_test = z[24300:31014]
+        # division en 2 array pour text et langue
+        x = df['Text']
+        y = df['Language']
+        x_train = x[0:24326]
+        y_train = y[0:24326]
+        x_test = TextExtracted
 
-    # creation model
-    model = Pipeline([
-        ('vectorizer', CountVectorizer()),
-        ('classifier', DecisionTreeClassifier())
-    ])
-
-    # apprentissage
-    model.fit(x_train, y_train)
-    # évalutation model
-    y_pred = model.predict(y_test)
-    print(y_pred)
-    #pd.DataFrame(y_pred, z_test).to_csv('ModèleFinale.csv')
+        # classifier
+        pipeline = Pipeline([('vect', CountVectorizer()), ('clf', DecisionTreeClassifier())])
+        pipeline.fit(x_train, y_train)
+        prediction = pipeline.predict([x_test])
+        print("The language used in this text is " + str(prediction))
