@@ -1,15 +1,15 @@
 import cv2
-import numpy as np
+from PIL import Image
 
 
-vid = cv2.VideoCapture(0)
-detector = cv2.TextDETECTOR()
-while True:
-    ret, frame = vid.read()
-    boxes, confidences = detector.detect(frame)
-    for i, box in enumerate(boxes):
-        cv2.rectangle(frame, box[0], box[1], (0, 255, 0), 2)
-    cv2.imshow("Text Detection", frame)
-    if cv2.waitKey(1) == ord('q'):
-        break
-
+def textscanner():
+    # activate the camera
+    vid = cv2.VideoCapture(0)
+    while True:  # tries to find in the camera text and takes a picture when q is clicked
+        _, Image = vid.read()
+        cv2.imshow("Text Detection", Image)
+        if cv2.waitKey(1) == ord('q'):
+            cv2.imwrite('ImageWithText.jpg', Image)
+            break
+    vid.release()  # stops camera
+    cv2.destroyAllWindows()  # delete all the windows

@@ -1,5 +1,7 @@
 import MLrecognition
 from ExtractTextFromImg import image_to_text
+from textscanner import textscanner
 
-
-image_to_text('d.jpg')
+textscanner()
+TextExtracted=image_to_text('ImageWithText.jpg')
+MLrecognition.prediction(TextExtracted)
