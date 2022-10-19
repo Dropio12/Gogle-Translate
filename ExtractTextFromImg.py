@@ -19,11 +19,8 @@ def image_to_text(image):
     # load the image as a PIL/Pillow image, apply OCR, and then delete the temporary file
     text = pytesseract.image_to_string(Image.open(filename))
     os.remove(filename)
-    print(text)
     return text
 
-
-image_to_text('quotes.jpg')
 ## read image
 # img = cv2.imread('quotes.jpg')
 

@@ -1,3 +1,5 @@
+import csv
+
 import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.pipeline import Pipeline
@@ -5,7 +7,7 @@ from sklearn.tree import DecisionTreeClassifier
 
 def prediction(TextExtracted):
     # transfère du doc csv
-    df = pd.read_csv('/language-identification-datasets.csv')
+    df = pd.read_csv('language-identification-datasets.csv')
 
     # division en 2 array pour text et langue
     x = df['Text']
@@ -13,7 +15,8 @@ def prediction(TextExtracted):
     # z = df['ID']
     x_train = x[0:24326]
     y_train = y[0:24326]
-    # y_test = y[24300:31014]
+    csv.writer('language-identification-datasets.csv', TextExtracted, 24300, 0);
+    y_test = y[24300]
     # x_test = x[24300:31014]
     # z_test = z[24300:31014]
 
@@ -25,8 +28,7 @@ def prediction(TextExtracted):
 
     # apprentissage
     model.fit(x_train, y_train)
-
     # évalutation model
-    y_pred = model.predict(TextExtracted)
+    y_pred = model.predict(y_test)
     print(y_pred)
-    # pd.DataFrame(y_pred, z_test).to_csv('ModèleFinale.csv')
+    #pd.DataFrame(y_pred, z_test).to_csv('ModèleFinale.csv')
