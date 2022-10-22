@@ -12,9 +12,9 @@ from Abreviation_Slang import other_clean
 from EmojiRemover import remove_emoji
 
 def prediction(TextExtracted):
-    #if TextExtracted =='':
-        #print('No text detected. Try to take a better picture or with more light.')
-   # else:
+    if TextExtracted =='':
+        print('No text detected. Try to take a better picture or with more light.')
+    else:
         # transfère du doc csv
         df = pd.read_csv('language-identification-datasets.csv')
         # division en 2 array pour text et langue
@@ -50,4 +50,4 @@ def prediction(TextExtracted):
         prediction = model.predict(x_test)
         print("The language used in this text is " + str(prediction))
 
-prediction("Hello,what's your name?")
+
