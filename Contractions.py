@@ -42,8 +42,9 @@ contractions_dict = {
 
 def expand_contraction(text, contraction_dict):
     contraction_pattern = re.compile('({})'.format('|'.join(contraction_dict.keys())), flags=re.IGNORECASE | re.DOTALL)
-    #pass the text and the contraction pattern to the function
-    def expand_match(contraction): #function to expand the contraction
+
+    # pass the text and the contraction pattern to the function
+    def expand_match(contraction):  # function to expand the contraction
         match = contraction.group(0)
         first_char = match[0]
         expanded_contraction = contraction_dict.get(match) \
@@ -55,11 +56,11 @@ def expand_contraction(text, contraction_dict):
 
     expanded_text = contraction_pattern.sub(expand_match, text)
     expanded_text = re.sub("'", "", expanded_text)
-    #text is now expanded and no longer has any contractions
+    # text is now expanded and no longer has any contractions
     return expanded_text
 
 
-def main_contraction(text: str) -> str: # the function that will be called from the main program
+def main_contraction(text):  # the function that will be called from the main program
     text = expand_contraction(text, contractions_dict)
 
     return text

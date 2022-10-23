@@ -1,2 +1,2 @@
-def to_lower(text: str) -> str:
+def to_lower(text):
     return text.lower()

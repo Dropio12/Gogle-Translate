@@ -1,4 +1,6 @@
 import re
+
+
 def remove_emoji(text):
     emoji_pattern = re.compile(
         '['
@@ -10,4 +12,4 @@ def remove_emoji(text):
         u'\U000024C2-\U0001F251'
         ']+',
         flags=re.UNICODE)
-    return emoji_pattern.sub(r'', text) # finding all emojis and replacing them with nothing
+    return emoji_pattern.sub(r'', text)  # finding all emojis and replacing them with nothing
