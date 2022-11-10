@@ -21,7 +21,7 @@ MDBoxLayout:
                 MDTextField:
                     hint_text: 'Enter your password'
                     helper_text: 'Forgot your password?'
-                    helper_text_mode: "on_focus"
+                    helper_text_mode: "on_focus" 
                     pos_hint: {'center_x': 0.5, 'center_y': 0.45}
                     size_hint_x: None
                     width: 300
@@ -29,7 +29,7 @@ MDBoxLayout:
                     required: True
                 MDTextField:
                     hint_text: 'Enter your username'
-                    helper_text_mode: "on_focus"
+                    helper_text_mode: "on_focus" 
                     pos_hint: {'center_x': 0.5, 'center_y': 0.55}
                     size_hint_x: None
                     width: 300
@@ -39,7 +39,7 @@ MDBoxLayout:
                 MDTextField:
                     hint_text: 'Enter the language'
                     helper_text: 'Default language is English'
-                    helper_text_mode: "on_focus"
+                    helper_text_mode: "on_focus" 
                     pos_hint: {'center_x': 0.25, 'center_y': 0.5}
                     size_hint_x: None
                     width: 300
@@ -50,7 +50,7 @@ MDBoxLayout:
                 MDTextField:
                     hint_text: 'Enter the language'
                     helper_text: 'Default language is English'
-                    helper_text_mode: "on_focus"
+                    helper_text_mode: "on_focus" 
                     pos_hint: {'center_x': 0.75, 'center_y': 0.5}
                     size_hint_x: None
                     width: 300
@@ -113,7 +113,6 @@ MDBoxLayout:
 
 
 class CustomOverFlowMenu(MDDropdownMenu):
-
     # In this class you can set custom properties for the overflow menu.
     pass
 
