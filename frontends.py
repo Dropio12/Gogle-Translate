@@ -4,116 +4,295 @@ from kivymd.app import MDApp
 from kivymd.uix.menu import MDDropdownMenu
 
 KV = '''
-#:import CustomOverFlowMenu __main__.CustomOverFlowMenu
-
 MDBoxLayout:
     orientation: "vertical"
     md_bg_color: "#FFEFD3"
-
-    MDTopAppBar:
-        title: "Menu"
-        md_bg_color: "#FFA500"
-        left_action_items: [["menu", lambda x: nav_draw.set_state()]]
     MDNavigationLayout:
         ScreenManager:
-            id: screen_manager
             Screen:
+                MDBoxLayout:
+                    orientation: "vertical"
+                    MDToolbar:
+                        title: "My App"
+                        elevation: 10
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+                        right_action_items: [["dots-vertical", lambda x: nav_drawer.set_state("open")]]
+                        md_bg_color: "#FFEFD3"
+                    Widget:
+            Screen:
+                name: 'LoginScreen'
+                username: username
+                password: password
+                output_label: output_label
+                login_button: login_button
+                register_button: register_button
+                MDButton:
+                    id: register_button
+                    text: 'Register'
+                    on_press: root.manager.current = 'RegisterWindow'
+                MDButton:
+                    id: login_button
+                    text: 'Login'
+                    font_size: 30
+                    background_color: 0, 0, 1, 1
+                    size_hint: 0.5, 0.1
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                    on_press: root.confirm()
+                MDLabel:
+                    text: "Sign In"
+                    halign: "center"
+                    font_size: "40sp"
+                    font_style: "Button"
+                    pos_hint: {"center_x": .5, "center_y": .70}
+                    font_name: "DejaVuSans.ttf"
+                    color: "#FFA500"
                 MDTextField:
+                    id: password
                     hint_text: 'Enter your password'
                     helper_text: 'Forgot your password?'
-                    helper_text_mode: "on_focus" 
+                    helper_text_mode: "on_focus"
                     pos_hint: {'center_x': 0.5, 'center_y': 0.45}
                     size_hint_x: None
                     width: 300
                     icon_right: "account-search"
                     required: True
                 MDTextField:
+                    id: username
                     hint_text: 'Enter your username'
-                    helper_text_mode: "on_focus" 
+                    helper_text_mode: "on_focus"
                     pos_hint: {'center_x': 0.5, 'center_y': 0.55}
                     size_hint_x: None
                     width: 300
                     required: True
             Screen:
-                name: "screen 1"
+                name: 'RegisterWindow'
+                username: username
+                password: password
+                output_label: output_label
+                MDLabel:
+                    text: "Register"
+                    halign: "center"
+                    font_size: "40sp"
+                    font_style: "Button"
+                    pos_hint: {"center_x": .5, "center_y": .70}
+                    font_name: "DejaVuSans.ttf"
+                    color: "#FFA500"
                 MDTextField:
-                    hint_text: 'Enter the language'
-                    helper_text: 'Default language is English'
-                    helper_text_mode: "on_focus" 
-                    pos_hint: {'center_x': 0.25, 'center_y': 0.5}
+                    id: password
+                    hint_text: 'Enter your password'
+                    helper_text_mode: "on_focus"
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.45}
                     size_hint_x: None
                     width: 300
-                    icon_right: "language"
+                    icon_right: "account-search"
                     required: True
-                    mode: "rectangle"
-                    on_text_validate: app.show_menu()
                 MDTextField:
-                    hint_text: 'Enter the language'
-                    helper_text: 'Default language is English'
-                    helper_text_mode: "on_focus" 
-                    pos_hint: {'center_x': 0.75, 'center_y': 0.5}
+                    id: password_confirmation
+                    hint_text: 'Confirm your password'
+                    helper_text_mode: "on_focus"
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.45}
                     size_hint_x: None
                     width: 300
-                    icon_right: "language"
+                    icon_right: "account-search"
                     required: True
-                    mode: "rectangle"
+                MDTextField:
+                    id: username
+                    hint_text: 'Enter your email or username'
+                    helper_text_mode: "on_focus"
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.55}
+                    size_hint_x: None
+                    width: 300
+                    required: True
+                MDButton:
+                    id: register_button
+                    text: 'Register'
+                    font_size: 30
+                    background_color: 0, 0, 1, 1
+                    size_hint: 0.5, 0.1
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                    on_press: root.register()     
             Screen:
-                name: "screen 2"
-                MDBottomAppBar:
-                    md_bg_color: "#F02D3A"
-                    MDTopAppBar:
-                        icon: "circle"
-                        type: "custom"
-                        type: "bottom"
-                        icon_color: "#F02D3A"
-                        on_action_button: app.callback(self.icon)
+                name: 'HomeScreen'
+                MDToolbar:
+                    title: "Home"
+                    elevation: 10
+                    left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+                    right_action_items: [["dots-vertical", lambda x: nav_drawer.set_state("open")]]
+                    md_bg_color: "#FFEFD3"
+                Widget:     
+            Screen:
+                name: 'ProfileScreen'
+                MDToolbar:
+                    title: "Profile"
+                    elevation: 10
+                    left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+                    right_action_items: [["dots-vertical", lambda x: nav_drawer.set_state("open")]]
+                    md_bg_color: "#FFEFD3"
+                Widget:    
+            Screen:
+                name: 'Translation'
+                GridLayout:
+                    cols: 1
+                    padding: 10
+                    spacing: 10
+                    MDToolbar:
+                        title: 'Translation'
+                        left_action_items: [['menu', lambda x: nav_drawer.set_state()]]
+                        elevation: 10
+                        pos_hint: {'top': 1}
+                    MDLabel:
+                        text: 'Translation'
+                        halign: 'center'
+                        font_style: 'H4'
+                        theme_text_color: 'Primary'
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                    MDTextField:
+                        id: input_text
+                        hint_text: 'Enter your text'
+                        helper_text_mode: "on_focus"
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+                        size_hint_x: None
+                        width: 300
+                        icon_right: "account-search"
+                        required: True
+                    MDTextField:
+                        id: output_text
+                        hint_text: 'Translated text'
+                        helper_text_mode: "on_focus"
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+                        size_hint_x: None
+                        width: 300
+                        icon_right: "account-search"
+                        required: True
+                    MDRaisedButton:
+                        text: 'Translate'
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+                        on_press: root.translate()
+                    MDLabel:
+                        id: output_label
+                        text: ''
+                        halign: 'center'
+                        font_style: 'H4'
+                        theme_text_color: 'Primary'
+                        size_hint_y: None
+                        height: self.texture_size[1]
+            Screen:
+                    name: 'Camera'
+                    MDBottomAppBar:
+                        md_bg_color: "#F02D3A"
+                        MDTopAppBar:
+                            icon: "circle"
+                            type: "custom"
+                            type: "bottom"
+                            icon_color: "#F02D3A"
+                            on_action_button: app.camera()
+            Screen:
+                name: 'Settings'
+                MDToolbar:
+                    title: "Settings"
+                    elevation: 10
+                    left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+                    right_action_items: [["dots-vertical", lambda x: nav_drawer.set_state("open")]]
+                    md_bg_color: "#FFEFD3"
+                Widget:
+            Screen:
+                name: 'Home1'
+                GridLayout:
+                    cols: 1
+                    padding: 10
+                    spacing: 10
+                    MDToolbar:
+                        title: 'Home'
+                        left_action_items: [['menu', lambda x: nav_drawer.set_state()]]
+                        elevation: 10
+                        pos_hint: {'top': 1}
+                    MDLabel:
+                        text: 'Home'
+                        halign: 'center'
+                        font_style: 'H4'
+                        theme_text_color: 'Primary'
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                    MDRaisedButton:
+                        text: 'Camera'
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+                        on_press: root.camera()
+                    MDRaisedButton:
+                        text: 'Dictionary'
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+                        on_press: root.dictionary()
+                    MDRaisedButton:
+                        text: 'Translation'
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+                        on_press: root.translation()
+                    MDLabel:
+                        id: output_label
+                        text: ''
+                        halign: 'center'
+                        font_style: 'H4'
+                        theme_text_color: 'Primary'
+                        size_hint_y: None
+                        height: self.texture_size[1]
         MDNavigationDrawer:
-            id: nav_draw
+            id: nav_drawer
             orientation: "vertical"
             padding: "8dp"
             spacing: "8dp"
-            AnchorLayout:
-                anchor_x: "left"
-                size_hint_y: None
-                height: avatar.height
-                Image:
-                    id: avatar
-                    size_hint: None, None
-                    size: "56dp", "56dp"
-                    source: "data/logo/kivy-icon-256.png"
-
             MDLabel:
-                text: "Akonadi"
+                text: "My App"
                 font_style: "Button"
-                size_hint_y: None
-                height: self.texture_size[1]
-            MDLabel:
-                text: "your@gmail.com"
-                font_style: "Caption"
                 size_hint_y: None
                 height: self.texture_size[1]
             ScrollView:
                 MDList:
-                    OneLineAvatarListItem:
-                        on_press:
-                            nav_draw.set_state("close")
-                            screen_manager.current = "screen 1"
-                        text:"Home"
+                    OneLineIconListItem:
+                        text: "Item 1"
                         IconLeftWidget:
-                            icon: "home"
-                    OneLineAvatarListItem:
-                        on_press:
-                            nav_draw.set_state("close")
-                            screen_manager.current = "screen 2"
-                        text:"Camera translator"
+                            icon: "android"
+                    OneLineIconListItem:
+                        text: "Item 2"
                         IconLeftWidget:
-                            icon: "camera"
-
+                            icon: "apple"
+                    OneLineIconListItem:
+                        text: "Item 3"
+                        IconLeftWidget:
+                            icon: "language-python"
+                    OneLineIconListItem:
+                        text: "Item 4"
+                        IconLeftWidget:
+                            icon: "language-cpp"
+                    OneLineIconListItem:
+                        text: "Item 5"
+                        IconLeftWidget:
+                            icon: "language-csharp"
+                    OneLineIconListItem:
+                        text: "Item 6"
+                        IconLeftWidget:
+                            icon: "language-java"
+                    OneLineIconListItem:
+                        text: "Item 7"
+                        IconLeftWidget:
+                            icon: "language-javascript"
+                    OneLineIconListItem:
+                        text: "Item 8"
+                        IconLeftWidget:
+                            icon: "language-php"
+                    OneLineIconListItem:
+                        text: "Item 9"
+                        IconLeftWidget:
+                            icon: "language-ruby"
+                    OneLineIconListItem:
+                        text: "Item 10"
+                        IconLeftWidget:
+                            icon: "language-swift"
 '''
 
 
 class CustomOverFlowMenu(MDDropdownMenu):
-    # In this class you can set custom properties for the overflow menu.
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.register_event_type('on_release')
     pass
 
 
