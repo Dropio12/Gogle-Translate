@@ -3,8 +3,9 @@ from kivy.lang import Builder
 from kivymd.app import MDApp
 from kivymd.uix.menu import MDDropdownMenu
 
+
 KV = '''
-MDBoxLayout:
+<MDBoxLayout>
     orientation: "vertical"
     md_bg_color: "#FFEFD3"
     MDNavigationLayout:
@@ -38,7 +39,7 @@ MDBoxLayout:
                     size_hint: 0.5, 0.1
                     pos_hint: {'center_x': 0.5, 'center_y': 0.5}
                     on_press: root.confirm()
-                MDLabel:
+                Label:
                     text: "Sign In"
                     halign: "center"
                     font_size: "40sp"
@@ -140,7 +141,7 @@ MDBoxLayout:
                         left_action_items: [['menu', lambda x: nav_drawer.set_state()]]
                         elevation: 10
                         pos_hint: {'top': 1}
-                    MDLabel:
+                    Label:
                         text: 'Translation'
                         halign: 'center'
                         font_style: 'H4'
@@ -169,7 +170,7 @@ MDBoxLayout:
                         text: 'Translate'
                         pos_hint: {'center_x': 0.5, 'center_y': 0.45}
                         on_press: root.translate()
-                    MDLabel:
+                    Label:
                         id: output_label
                         text: ''
                         halign: 'center'
@@ -207,7 +208,7 @@ MDBoxLayout:
                         left_action_items: [['menu', lambda x: nav_drawer.set_state()]]
                         elevation: 10
                         pos_hint: {'top': 1}
-                    MDLabel:
+                    Label:
                         text: 'Home'
                         halign: 'center'
                         font_style: 'H4'
@@ -296,12 +297,13 @@ class CustomOverFlowMenu(MDDropdownMenu):
     pass
 
 
+def callback(instance_action_top_appbar_button):
+    print(instance_action_top_appbar_button)
+
+
 class Test(MDApp):
     def build(self):
         return Builder.load_string(KV)
-
-    def callback(self, instance_action_top_appbar_button):
-        print(instance_action_top_appbar_button)
 
 
 Test().run()
